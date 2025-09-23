@@ -42,8 +42,9 @@ def create_table(db_name):
             CREATE TABLE IF NOT EXISTS company_vacancy(
             vacancy_id SERIAL PRIMARY KEY,
             vacancy_name VARCHAR (100) NOT NULL,
-            org_id VARCHAR(30) NOT NULL,
-            link VARCHAR (100) NOT NULL
+            org_id INTEGER NOT NULL,
+            link VARCHAR (100) NOT NULL,
+            FOREIGN KEY (org_id) REFERENCES company(company_id)
         );""")
     print("Таблицы успешно созданы")
     cursor.close()
