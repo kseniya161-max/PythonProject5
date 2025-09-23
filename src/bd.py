@@ -20,5 +20,37 @@ def creating_bd(db_name):
     conn.close()
 
 
+def create_table(db_name):
+    """Создание Таблицв в БД"""
+    conn = psycopg2.connect(
+        dbname=db_name,
+        user='postgres',
+        password='1234',
+        host='localhost',
+        port='5432'
+    )
+
+    cursor = conn.cursor() # Открываем курсор
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS company(
+        company_id SERIAL PRIMARY KEY,
+        company_name VARCHAR (30) NOT NULL
+    );""")
+
+    cursor.execute("""
+            CREATE TABLE IF NOT EXISTS company_vacancy(
+            vacancy_id SERIAL PRIMARY KEY,
+            vacancy_name VARCHAR (100) NOT NULL,
+            org_id VARCHAR(30) NOT NULL,
+            link VARCHAR (100) NOT NULL
+        );""")
+    print("Таблицы успешно созданы")
+    cursor.close()
+    conn.close()
+
+
+
 if __name__ == "__main__":
-    creating_bd('project_vacancy')
+    db_name = 'project_vacancy'
+    creating_bd(db_name)
+    create_table(db_name)
