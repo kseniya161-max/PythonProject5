@@ -29,6 +29,7 @@ def create_table(db_name):
         host='localhost',
         port='5432'
     )
+    conn.autocommit = True
 
     cursor = conn.cursor() # Открываем курсор
     cursor.execute("""
