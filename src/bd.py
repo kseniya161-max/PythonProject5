@@ -13,7 +13,7 @@ def creating_bd(db_name):
     )
     conn.autocommit = True #создаем автокомит
 
-    cursor = conn.cursor()
+    cursor = conn.cursor() # Открываем курсор
     cursor.execute(sql.SQL("CREATE DATABASE {}").format (sql.Identifier(db_name)))
     print(f'База данных {db_name} успешно создана ')
 
