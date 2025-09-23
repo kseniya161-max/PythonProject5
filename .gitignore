@@ -207,9 +207,9 @@ marimo/_lsp/
 __marimo__/
 
 
-.env
+
 
 # .gitignore
+# Игнорировать файлы конфигурации
 .env
-
 config.py
