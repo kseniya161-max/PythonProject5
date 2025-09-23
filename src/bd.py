@@ -1,14 +1,15 @@
 import psycopg2
 from psycopg2 import sql
+import config
 
 def creating_bd(db_name):
     """ Создание Базы данных и подключение"""
     conn = psycopg2.connect(
         dbname='postgres',
-        user='postgres',
-        password='1234',
-        host='localhost',
-        port='5432'
+        user=config.DB_USER,
+        password=config.DB_PASSWORD ,
+        host=config.DB_HOST,
+        port=config.DB_PORT
     )
     conn.autocommit = True #создаем автокомит
 
@@ -24,10 +25,10 @@ def create_table(db_name):
     """Создание Таблицв в БД"""
     conn = psycopg2.connect(
         dbname=db_name,
-        user='postgres',
-        password='1234',
-        host='localhost',
-        port='5432'
+        user=config.DB_USER,
+        password=config.DB_PASSWORD,
+        host=config.DB_HOST,
+        port=config.DB_PORT
     )
     conn.autocommit = True
 
