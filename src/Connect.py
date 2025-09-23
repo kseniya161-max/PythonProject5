@@ -15,8 +15,13 @@ def connect_api():
         125419124, # МТС IT
         41862 # Контур
     ]    #  по id работодателей которые меня интересуют
+
+    headers = {
+        'User-Agent': 'My_pr/1.0 (baharavaxen@yandex.ru)',
+    }
+
     for emp_id in employer_ids:
-        response = requests.get(f'https://api.hh.ru/vacancies?employer_id={emp_id}')
+        response = requests.get(f'https://api.hh.ru/vacancies?employer_id={1057}',headers=headers)
 
         if response.status_code == 200:
             vacancies = response.json().get('items',[])
