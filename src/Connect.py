@@ -45,8 +45,9 @@ def connect_api():
                 filling_company(cursor, company_name)
 
                 for vacancy in vacancies:
-                    print(f"- {vacancy['name']} (URL: {vacancy['alternate_url']})")
-                    filling_company_vacancy(cursor, company_name, vacancy)
+                    salary = vacancy.get('salary', {}).get('from', 0)
+                    print(f"- {vacancy['name']} (URL: {vacancy['alternate_url']}),Salary: {salary})")
+                    filling_company_vacancy(cursor, company_name, vacancy, salary)
 
             else:
                 print('Нет открытых Вакансий')
