@@ -1,6 +1,6 @@
 import requests
 import json
-from data_handler import filling_company,filling_company_vacancy
+from data_handler import filling_company, filling_company_vacancy
 from src import config
 import psycopg2
 
@@ -11,14 +11,14 @@ def connect_api():
         9694561,
         2180,
         78638,
-        2748, # Ростелеком
-        1388900, #Сбертех
-        1057, # Лаборатория Касперского
-        15478, # VK
-        6093775, # Астон Стажировка
-        125419124, # МТС IT
-        41862 # Контур
-    ]    #  по id работодателей которые меня интересуют
+        2748,   # Ростелеком
+        1388900,   # Сбертех
+        1057,   # Лаборатория Касперского
+        15478,   # VK
+        6093775,   # Астон Стажировка
+        125419124,   # МТС IT
+        41862   # Контур
+    ]
 
     headers = {
         'User-Agent': 'My_pr/1.0 (baharavaxen@yandex.ru)',
@@ -34,14 +34,14 @@ def connect_api():
     cursor = conn.cursor()  # Открываем курсор
 
     for emp_id in employer_ids:
-        response = requests.get(f'https://api.hh.ru/vacancies?employer_id={emp_id}',headers=headers)
+        response = requests.get(f'https://api.hh.ru/vacancies?employer_id={emp_id}', headers=headers)
 
         if response.status_code == 200:
-            vacancies = response.json().get('items',[])
+            vacancies = response.json().get('items', [])
             print(f"Вакансии по этому ID Работодателю {emp_id}:")
 
             if vacancies:
-                company_name = vacancies[0].get('employer',{}).get('name','Неизвестно')
+                company_name = vacancies[0].get('employer', {}).get('name', 'Неизвестно')
                 filling_company(cursor, company_name)
 
                 for vacancy in vacancies:

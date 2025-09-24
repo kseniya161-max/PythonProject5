@@ -1,6 +1,7 @@
 import json
 from manager import DBManager
 
+
 def user_managment():
     """ Функция взаимодействует с пользователем"""
     db_manager = DBManager()
@@ -17,21 +18,21 @@ def user_managment():
             choice = input("Введите номер действия: ")
             if choice == '1':
                 companies_count = db_manager.get_companies_and_vacancies_count()
-                print(f'Количество вакансий у компаний: ')
-                for company,count in companies_count:
+                print('Количество вакансий у компаний: ')
+                for company, count in companies_count:
                     print(f'Компания {company}:{count} вакансий')
             elif choice == '2':
                 company_info = db_manager.get_all_vacancies()
-                print(f'Информация о Вакансиях: ')
+                print('Информация о Вакансиях: ')
                 for company, vacancy, link, salary in company_info:
                     print(f'Компания - {company}:Вакансия - {vacancy} Ссылка: {link}, Зарплата: {salary if salary is not None else "Не указана"}\n')
             elif choice == '3':
-                avg =db_manager.get_avg_salary()
+                avg = db_manager.get_avg_salary()
                 print(f'Средняя заработная плата по всем вакансиям: {avg} руб.')
 
             elif choice == '4':
                 higher_salary_vacancies = db_manager.get_vacancies_with_higher_salary()
-                print(f'Заработная плата выше средней: ')
+                print('Заработная плата выше средней: ')
                 for company, salary, vacancy in higher_salary_vacancies:
                     print(f'Заработная плата выше среднего значения: Компания - {company}, Должность - {vacancy}, Заработная плата: {salary} руб.')
 
@@ -50,6 +51,6 @@ def user_managment():
     finally:
         db_manager.close_connection()
 
-if __name__=='__main__':
-    user_managment()
 
+if __name__ == '__main__':
+    user_managment()

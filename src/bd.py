@@ -12,10 +12,10 @@ def creating_bd(db_name):
         host=config.DB_HOST,
         port=config.DB_PORT
     )
-    conn.autocommit = True #создаем автокомит
+    conn.autocommit = True    # создаем автокомит
 
-    cursor = conn.cursor() # Открываем курсор
-    cursor.execute(sql.SQL("CREATE DATABASE {}").format (sql.Identifier(db_name)))
+    cursor = conn.cursor()   # Открываем курсор
+    cursor.execute(sql.SQL("CREATE DATABASE {}").format(sql.Identifier(db_name)))
     print(f'База данных {db_name} успешно создана ')
 
     cursor.close()
@@ -33,7 +33,7 @@ def create_table(db_name):
     )
     conn.autocommit = True
 
-    cursor = conn.cursor() # Открываем курсор
+    cursor = conn.cursor()   # Открываем курсор
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS company(
         company_id SERIAL PRIMARY KEY,
@@ -52,7 +52,6 @@ def create_table(db_name):
     print("Таблицы успешно созданы")
     cursor.close()
     conn.close()
-
 
 
 if __name__ == "__main__":

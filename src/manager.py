@@ -2,6 +2,7 @@ import psycopg2
 from src import config
 import json
 
+
 class DBManager:
     """Подключение к Базе данных"""
     def __init__(self):
@@ -56,7 +57,7 @@ class DBManager:
         self.cursor.execute(query, (avg_salary,))
         return self.cursor.fetchall()
 
-    def get_vacancies_with_keyword(self,keyword):
+    def get_vacancies_with_keyword(self, keyword):
         """Получает список всех вакансий, в названии которых содержатся переданные в метод слова,
  например python."""
         query = """
@@ -93,5 +94,3 @@ if __name__ == "__main__":
         print(f'Компании по ключевому слову: {keyword_vacancies}')
     finally:
         db_manager.close_connection()
-
-
