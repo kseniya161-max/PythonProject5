@@ -46,6 +46,7 @@ def create_table(db_name):
             vacancy_name VARCHAR (100) NOT NULL,
             org_id INTEGER NOT NULL,
             link VARCHAR (100) NOT NULL,
+            salary NUMERIC,
             FOREIGN KEY (org_id) REFERENCES company(company_id)
         );""")
     print("Таблицы успешно созданы")
