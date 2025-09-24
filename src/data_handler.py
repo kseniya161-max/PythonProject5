@@ -13,14 +13,14 @@ def filling_company(cursor,company_name):
     except Exception as e:
         print(f"Ошибка при добавлении компании '{company_name}': {e}")
 
-def filling_company_vacancy(cursor, company_name, vacancy,salary):
+def filling_company_vacancy(cursor, company_name, vacancy,salary_value):
     """Вставка Вакансии в таблицу Вакансии"""
     try:
         vacancy_name = vacancy['name']
         link = vacancy['alternate_url']
         cursor.execute("""
             INSERT INTO company_vacancy (vacancy_name, org_id, link, salary)
-            VALUES (%s, (SELECT company_id FROM company WHERE company_name = %s),%s);""", (vacancy_name,company_name, link, salary)
+            VALUES (%s, (SELECT company_id FROM company WHERE company_name = %s),%s, %s);""", (vacancy_name,company_name, link, salary_value)
 
         )
         print(f"Вакансия '{vacancy_name}' добавлена.")
