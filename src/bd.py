@@ -2,6 +2,7 @@ import psycopg2
 from psycopg2 import sql
 import config
 
+
 def creating_bd(db_name):
     """ Создание Базы данных и подключение"""
     conn = psycopg2.connect(
@@ -36,7 +37,7 @@ def create_table(db_name):
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS company(
         company_id SERIAL PRIMARY KEY,
-        company_name VARCHAR (30) NOT NULL
+        company_name VARCHAR (200) NOT NULL UNIQUE
     );""")
 
     cursor.execute("""
