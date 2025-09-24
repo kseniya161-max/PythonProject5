@@ -8,8 +8,7 @@ def filling_company(cursor, company_name):
     try:
         cursor.execute(
             "INSERT INTO company (company_name) VALUES (%s) ON CONFLICT (company_name) DO NOTHING;",
-            (company_name,)
-        )
+            (company_name,))
         print(f"Компания '{company_name}' добавлена.")
     except Exception as e:
         print(f"Ошибка при добавлении компании '{company_name}': {e}")
