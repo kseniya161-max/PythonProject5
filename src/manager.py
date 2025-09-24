@@ -84,7 +84,7 @@ if __name__ == "__main__":
         print(all_vacancies)
 
         avg_salary = db_manager.get_avg_salary()
-        print(f"Average Salary: {avg_salary}")
+        print(f"Средняя зарплата по всем вакансиям: {avg_salary}")
 
         higher_salary_vacancies = db_manager.get_vacancies_with_higher_salary()
         print(higher_salary_vacancies)
