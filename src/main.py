@@ -24,7 +24,7 @@ def user_managment():
                 company_info = db_manager.get_all_vacancies()
                 print(f'Информация о Вакансиях: ')
                 for company, vacancy, link, salary in company_info:
-                    print(f'Компания {company}:Вакансия{vacancy} Ссылка {link}, Зарплата {salary if salary is not None else "Не указана"}\n')
+                    print(f'Компания - {company}:Вакансия - {vacancy} Ссылка: {link}, Зарплата: {salary if salary is not None else "Не указана"}\n')
             elif choice == '3':
                 avg =db_manager.get_avg_salary()
                 print(f'Средняя заработная плата по всем вакансиям: {avg} руб.')
@@ -33,14 +33,14 @@ def user_managment():
                 higher_salary_vacancies = db_manager.get_vacancies_with_higher_salary()
                 print(f'Заработная плата выше средней: ')
                 for company, salary, vacancy in higher_salary_vacancies:
-                    print(f'Заработная плата выше среднего значения по следующим вакансиям: Компания {company}, Должность {vacancy}, Заработная плата {salary} руб.')
+                    print(f'Заработная плата выше среднего значения: Компания - {company}, Должность - {vacancy}, Заработная плата: {salary} руб.')
 
             elif choice == '5':
                 keyword = input("Введите ключевое слово для поиска: ")
                 with_keyword = db_manager.get_vacancies_with_keyword(keyword)
                 print(f'Произведена выборка по ключевому слову: {keyword} ')
                 for company, vacancy, link in with_keyword:
-                    print(f'Вакансии по ключевому слову {keyword}, {company},{vacancy},{link}')
+                    print(f'Вакансии по ключевому слову: {keyword}, {company},{vacancy},{link}')
             elif choice == '6':
                 print("Программа завершена")
                 break
