@@ -10,6 +10,7 @@ def user_managment():
             print('Нажмите: 1 - если хотите Получить список всех компаний и количество Вакансий')
             print('Нажмите: 2 - если хотите Получить всю информацию о Вакансиях')
             print('Нажмите: 3 - если хотите Получить среднюю зарплату по Вакансиям')
+            print('Нажмите: 4 - если хотите получить вакансии с зарплатой выше средней')
             print('Нажмите: 5 - если хотите Получить Вакансию по ключевому слову')
             print('Нажмите: 6 - если хотите Выйти')
 
@@ -23,13 +24,11 @@ def user_managment():
                 company_info = db_manager.get_all_vacancies()
                 print(f'Информация о Вакансиях: ')
                 for company, vacancy, link, salary in company_info:
-                    print(f'Компания {company}:Вакансия{vacancy} Ссылка {link}, Зарплата {salary if salary else 'Не указана'}\n}')
+                    print(f'Компания {company}:Вакансия{vacancy} Ссылка {link}, Зарплата {salary if salary is not None else "Не указана"}\n')
             elif choice == '3':
                 avg =db_manager.get_avg_salary()
-                print(f'Средняя зарплата по всем Вакансиям: ')
+                print(f'Средняя заработная плата по всем вакансиям: {avg} руб.')
 
-                for avg_salary in avg:
-                    print(f'Средняя заработная плата по всем вакансиям: {avg_salary} руб.')
             elif choice == '4':
                 higher_salary_vacancies = db_manager.get_vacancies_with_higher_salary()
                 print(f'Заработная плата выше средней: ')
@@ -38,7 +37,7 @@ def user_managment():
 
             elif choice == '5':
                 keyword = input("Введите ключевое слово для поиска: ")
-                with_keyword = db_manager.get_vacancies_with_keyword()
+                with_keyword = db_manager.get_vacancies_with_keyword(keyword)
                 print(f'Произведена выборка по ключевому слову: {keyword} ')
                 for company, vacancy, link in with_keyword:
                     print(f'Вакансии по ключевому слову {keyword}, {company},{vacancy},{link}')
