@@ -1,7 +1,6 @@
 import psycopg2
 from src import config
 from typing import List, Tuple, Optional
-import json
 
 
 class DBManager:
