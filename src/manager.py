@@ -1,5 +1,6 @@
 import psycopg2
 from src import config
+import json
 
 class DBManager:
     """Подключение к Базе данных"""
@@ -88,8 +89,8 @@ if __name__ == "__main__":
         higher_salary_vacancies = db_manager.get_vacancies_with_higher_salary()
         print(higher_salary_vacancies)
 
-        keyword_vacancies = db_manager.get_vacancies_with_keyword("python")
-        print(keyword_vacancies)
+        keyword_vacancies = db_manager.get_vacancies_with_keyword("Junior")
+        print(f'Компании по ключевому слову: {keyword_vacancies}')
     finally:
         db_manager.close_connection()
 
