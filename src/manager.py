@@ -1,6 +1,7 @@
 import psycopg2
-from src import config
+import config
 from typing import List, Tuple, Optional
+from bd import creating_bd
 
 
 class DBManager:
