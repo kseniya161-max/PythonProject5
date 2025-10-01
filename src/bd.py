@@ -3,7 +3,6 @@ from psycopg2 import sql
 import config
 
 
-
 def creating_bd(db_name):
     """ Создание Базы данных и подключение"""
     conn = psycopg2.connect(
