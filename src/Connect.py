@@ -81,7 +81,7 @@ def get_vacancies_from_api(emp_id):
 def connect_to_database():
     """Подключаемся к базе данных"""
     conn = psycopg2.connect(
-        dbname='project_vacancy',
+        dbname=config.DB_NAME, # Исправила чтобы подключаться неявно а из файла config
         user=config.DB_USER,
         password=config.DB_PASSWORD,
         host=config.DB_HOST,
