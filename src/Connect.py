@@ -1,6 +1,6 @@
 import requests
 from data_handler import filling_company, filling_company_vacancy
-from src import config
+import config
 import psycopg2
 
 
