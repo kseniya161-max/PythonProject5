@@ -1,5 +1,5 @@
 from bd import creating_bd, create_table
-from Connect import connect_api
+from connect import connect_api
 from manager import DBManager
 
 
