@@ -3,7 +3,6 @@ from Connect import connect_api
 from manager import DBManager
 
 
-
 def user_managment():
     """ Функция взаимодействует с пользователем"""
     db_manager = DBManager()

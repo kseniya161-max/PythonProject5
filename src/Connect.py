@@ -78,6 +78,7 @@ def get_vacancies_from_api(emp_id):
         print(f'Ошибка при получении данных с этого ID Работодателя {emp_id}: {response.status_code}')
         return []
 
+
 def connect_to_database():
     """Подключаемся к базе данных"""
     conn = psycopg2.connect(
@@ -92,7 +93,7 @@ def connect_to_database():
     return conn
 
 
-def processing_vacancies(employer_ids,cursor):
+def processing_vacancies(employer_ids, cursor):
     """Обработка Вакансий из списка работодателей"""
     for emp_id in employer_ids:
         vacancies = get_vacancies_from_api(emp_id)
@@ -115,6 +116,7 @@ def processing_vacancies(employer_ids,cursor):
             print(f'Нет открытых Вакансий по данному ID {emp_id}')
         # else:
         #     print(f'Ошибка при получении данных с этого ID Работодателя {emp_id} {response.status_code}')
+
 
 def connect_api():
     """ Подключение API"""
@@ -139,7 +141,6 @@ def connect_api():
     processing_vacancies(employer_ids, cursor)
     cursor.close()
     conn.close()
-
 
 
 if __name__ == '__main__':
