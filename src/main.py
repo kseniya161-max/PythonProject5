@@ -1,5 +1,5 @@
 from bd import creating_bd, create_table
-from connect import connect_api
+from vacancy_processor import connect_api
 from manager import DBManager
 
 
