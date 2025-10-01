@@ -92,7 +92,7 @@ def connect_to_database():
     return conn
 
 
-def processing_vacancies(employer_ids,cursor, response):
+def processing_vacancies(employer_ids,cursor):
     """Обработка Вакансий из списка работодателей"""
     for emp_id in employer_ids:
         vacancies = get_vacancies_from_api(emp_id)
@@ -104,17 +104,17 @@ def processing_vacancies(employer_ids,cursor, response):
             for vacancy in vacancies:
                 salary = vacancy.get('salary')
                 if salary is not None:
-                        salary_value = salary.get('from', 0)
+                    salary_value = salary.get('from', 0)
                 else:
                     salary_value = 0
 
-                    print(f"- {vacancy['name']} (URL: {vacancy['alternate_url']}),Salary: {salary_value}")
-                    filling_company_vacancy(cursor, company_name, vacancy, salary_value)
+                print(f"- {vacancy['name']} (URL: {vacancy['alternate_url']}),Salary: {salary_value}")
+                filling_company_vacancy(cursor, company_name, vacancy, salary_value)
 
-            else:
-                print('Нет открытых Вакансий')
         else:
-            print(f'Ошибка при получении данных с этого ID Работодателя {emp_id} {response.status_code}')
+            print(f'Нет открытых Вакансий по данному ID {emp_id}')
+        # else:
+        #     print(f'Ошибка при получении данных с этого ID Работодателя {emp_id} {response.status_code}')
 
 def connect_api():
     """ Подключение API"""
@@ -134,9 +134,12 @@ def connect_api():
     headers = {
         'User-Agent': 'My_pr/1.0 (baharavaxen@yandex.ru)',
     }
-
     conn = connect_to_database()
     cursor = conn.cursor()
+    processing_vacancies(employer_ids, cursor)
+    cursor.close()
+    conn.close()
+
 
 
 if __name__ == '__main__':

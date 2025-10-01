@@ -1,4 +1,7 @@
+from bd import creating_bd, create_table
+from Connect import connect_api
 from manager import DBManager
+
 
 
 def user_managment():
@@ -52,4 +55,8 @@ def user_managment():
 
 
 if __name__ == '__main__':
+    db_name = 'project_vacancy'
+    creating_bd(db_name)
+    create_table(db_name)
+    connect_api()
     user_managment()
