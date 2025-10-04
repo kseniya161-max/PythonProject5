@@ -8,7 +8,7 @@ class DBManager:
     """Подключение к Базе данных"""
     def __init__(self) -> None:
         self.conn = psycopg2.connect(
-            dbname='project_vacancy',
+            dbname=config.DB_NAME,
             user=config.DB_USER,
             password=config.DB_PASSWORD,
             host=config.DB_HOST,
@@ -44,7 +44,8 @@ class DBManager:
         query = """
         SELECT AVG(salary) FROM company_vacancy;"""
         self.cursor.execute(query)
-        return self.cursor.fetchone()[0]
+        avg_salary = self.cursor.fetchone()[0]
+        return round(avg_salary, 2) if avg_salary is not None else 0.0  # Округление до 2 знаков после запятой
 
     def get_vacancies_with_higher_salary(self) -> List[Tuple[str, str, Optional[float]]]:
         """получает список всех вакансий,

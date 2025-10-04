@@ -25,7 +25,7 @@ def creating_bd(db_name):
 def create_table(db_name):
     """Создание Таблицы в БД"""
     conn = psycopg2.connect(
-        dbname=db_name,
+        dbname=config.DB_NAME,
         user=config.DB_USER,
         password=config.DB_PASSWORD,
         host=config.DB_HOST,
