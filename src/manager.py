@@ -76,23 +76,3 @@ class DBManager:
         self.cursor.close()
         self.conn.close()
 
-
-# if __name__ == "__main__":
-#     db_manager = DBManager()
-#     try:
-#         companies_count = db_manager.get_companies_and_vacancies_count()
-#         print(companies_count)
-#
-#         all_vacancies = db_manager.get_all_vacancies()
-#         print(all_vacancies)
-#
-#         avg_salary = db_manager.get_avg_salary()
-#         print(f"Средняя зарплата по всем вакансиям: {avg_salary}")
-#
-#         higher_salary_vacancies = db_manager.get_vacancies_with_higher_salary()
-#         print(higher_salary_vacancies)
-#
-#         keyword_vacancies = db_manager.get_vacancies_with_keyword("Junior")
-#         print(f'Компании по ключевому слову: {keyword_vacancies}')
-#     finally:
-#         db_manager.close_connection()
